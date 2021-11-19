@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container_for_index">
+	        {% for blog in blogs %}
+		        	<div class="flex_web">
+			        	<a href="/user/index/{{ blog.id }}/"><span class="hedline">{{ blog.hedline }}</span></a><br>
+			        	<span class="text">{{ blog.text }}</span><br>
+			        	<span class="rubrick">{{ blog.rubrick }}</span>
+			        </div>
+	        {% endfor %}
+    </div>
+{% endblock %}

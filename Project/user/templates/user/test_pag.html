@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+	{{items}}
+	<div style="display: flex; flex-direction: column;">
+		{% for item in items %}
+			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<h1>{{item.hedline}}</h1>
+				<span>{{item.text}}</span>
+			</div>
+		{% endfor %}
+	</div>
+	<div>
+		{% for btn in colBtn %}		
+			<a href="/user/index/test_pag/{{btn}}" type="button">{{btn}}</a>
+		{% endfor %}
+	</div>
+{% endblock %}

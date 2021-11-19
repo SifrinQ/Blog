@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container_for_reg">
+		<form action="" method="post">{% csrf_token %}
+			<span class="value, v_username">Имя пользователя:</span> <input type="text" name="username" class="field, username"><br>
+	        <span class="value, v_email">Email:</span> <input type="email" name="email" class="field, email"><br>
+	        <span class="value, v_password">Пароль:</span> <input type="password" name="password" class="field, password"><br>
+	        <span class="value, v_password2">Пароль еще раз:</span> <input type="password" name="password2" class="field, password2"><br>
+	        <input type="submit" value="Регистрация">
+		</form>
+	</div>
+{% endblock %}

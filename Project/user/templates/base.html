@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset=utf-8>
+    <meta name="viewport" content="width=device-width">
+    <script   src="https://code.jquery.com/jquery-3.5.1.js"   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="   crossorigin="anonymous"></script>
+	<style>
+	/*****start for base.html css*****/
+	*{
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+	}
+	.top_header{
+		position: relative;
+		border: 1px solid black;
+		display: flex;
+		padding: 1%; 
+	}
+	.menu{
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+		align-self: auto;
+	}
+	.menu li{
+		margin-left: 2.5%;
+		display: none;
+	}
+	.logo{
+		border: 1px solid black;
+
+	}
+	.main_footer{
+		position: absolute;
+		bottom: 0;
+		border: 1px solid black;
+		width: 99.88%;
+	}
+	/*****end for base.html css*****/
+
+	/*****start for index.html css*****/
+	.container_for_index{
+		display: flex;
+		flex-wrap: wrap;
+		width: 92%;
+		margin-top: 0.5%;
+		margin-left: 4%;
+		border: 1px solid black;
+		justify-content: center;
+	}
+	.flex_web{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 1%;
+		width: 20%;
+		border: 1px solid black;
+	}
+	/*****end for index.html css*****/
+
+	/*****start for blog.html css*****/
+	.container_for_addblog{
+		display: flex;
+		max-width: 1170px;
+		height: 500px;
+		margin-left: 4%;
+		margin-right: 4%;
+		border: 1px solid black;
+		justify-content: center;
+		align-items: center;
+	}
+	/*****end for blog.html css*****/
+
+	/*****start for register.html css*****/
+	.container_for_reg{
+		display: flex;
+		max-width: 1170px;
+		height: 500px;
+		margin-left: 4%;
+		margin-right: 4%;
+		border: 1px solid black;
+		justify-content: center;
+		align-items: center;
+	}
+	.email{
+		position: absolute;
+		left: 49.45%;
+	}
+	.last_name{
+		position: absolute;
+		left: 49.45%;
+	}
+	.firts_name{
+		position: absolute;
+		left: 49.45%;
+	}
+	.username{
+		position: absolute;
+		left: 49.45%;
+	}
+	.password{
+		position: absolute;
+		left: 49.45%;
+	}
+	.password2{
+		position: absolute;
+		left: 49.45%;
+	}
+	form span{
+		position: absolute;
+		left: 38%;
+	}
+	/*****end for register.html css*****/
+	
+	</style>
+</head>
+<body>
+	<div class='wrapper'>
+		<header class='top_header'> 
+				{% if user.is_authenticated %}
+					<section class="username_in_header">
+						{{ request.session.username }}
+						<a href="/user/logout/">Выйти</a>
+						<a href="/user/index/{{request.session.id}}/update_profile">Изменить профиль</a>
+						<a href="/user/index/{{request.session.id}}/profile">Профиль</a>
+					</section>
+				{% else %}
+					<section class="login">
+						<a href="/user/login/">Войти</a>
+					</section>
+					<section class="reg" style="margin-left: 10px;">
+						<a href="/user/register/">Зарегистрироваться</a>
+					</section>
+				{% endif %}
+		</header>
+			{% block content %}{% endblock %}
+		<footer class="main_footer">
+			<h1>Some footer text</h1>
+		</footer>
+	</div>
+</body>
+</html>

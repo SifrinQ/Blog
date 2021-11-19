@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+	{% csrf_token %}
+	<button id="btn" type="button">AJAX</button>
+	<input type="text" id="get">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			const csrf = $('[name = "csrfmiddlewaretoken"]').val()
+			$('#btn').click(function(){
+				$.ajax({
+				url: '',
+				type: 'post',
+				data: {
+					'csrfmiddlewaretoken': csrf,
+					'querySet': $('#get').val()
+				},
+				success: function(response){
+					$('#block').remove()
+					$('body').append(
+						'<div id="block" style="display: flex; flex-direction: column;"></div>'
+					)
+					json = JSON.parse(response.response)
+					for (let i = json.length - 1; i >= 0; i--) {
+						$('#block').append(
+							'<div id="inner-block" style="display: flex;border: 1px solid black;align-items: center; justify-content: center; flex-direction: column;"><div style="display: flex;align-items: center; justify-content: center; flex-direction: column;"><h1>'+ json[i]['hedline'] +'</h1><p>'+ json[i]['text'] +'</p><div></div></br>'
+						)
+						console.log(json)
+					}
+				},
+			})
+		})	
+	})
+	</script>
+{% endblock %}

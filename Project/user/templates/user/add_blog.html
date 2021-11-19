@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+	{% if user.is_authenticated %}
+		<div class="container_for_addblog">
+			<form action="" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	{% else %}
+		Вы не зарегистрированны!
+	{% endif %}	
+{% endblock %}

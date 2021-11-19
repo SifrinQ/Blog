@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+	{% block content %}
+		{% if user.is_authenticated %}
+			<form method='post'>{% csrf_token %}
+				<p>
+					<label for="id_first_name">First name:</label>
+					<input id="id_first_name" maxlength="30" name="first_name" type="text" value="{{request.session.first_name}}">
+				</p>
+				<p>
+					<label for="id_last_name">Last name:</label>
+					<input id="id_last_name" maxlength="30" name="last_name" type="text"  value="{{request.session.last_name}}">
+				</p>
+				<p>
+					<label for="id_email">Email address:</label>
+					<input id="id_email" maxlength="254" name="email" type="email" value="{{request.session.email}}">
+				</p>
+				<p>
+					<label for="id_username">Username:</label>
+					<input id="id_username" maxlength="150" name="username" type="text" required="" value="{{request.session.username}}"> 
+				</p>
+				<p>
+					<label for="id_confirm_password">Confirm password:</label>
+					<input id="id_confirm_password" maxlength="254" name="confirm_password" type="password" required=""  value="{{request.session.first_name}}"></p>
+				<p>
+					<label for="id_new_password">New password:</label>
+					<input id="id_new_password" maxlength="254" name="new_password" type="password"  value="{{request.session.first_name}}">
+				</p>
+				<button type="submit">Submit</button>
+			</form>
+				{% if error_list %}
+					{{error_list.password_error}}
+				{% endif %}
+		{% else %}
+			Вы не зарегистрированны!
+			<section class="login">
+				<a href="/user/login/">Войти</a>
+			</section>
+			<section class="reg">
+				<a href="/user/register/">Зарегистрироваться</a>
+			</section>
+		{% endif %}		
+	{% endblock %}
